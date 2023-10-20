@@ -48,7 +48,7 @@ public class MySeleniumTest {
 ```
 
 
-Этот блок находится внутри метода main и содержит фактический автоматизированный тестовый сценарий, включая действия, связанные с веб-браузером Chrome, навигацией, заполнением формы, выполнением JavaScript и проверкой данных на веб-странице:
+<br>Этот блок находится внутри метода main и содержит фактический автоматизированный тестовый сценарий, включая действия, связанные с веб-браузером Chrome, навигацией, заполнением формы, выполнением JavaScript и проверкой данных на веб-странице:
 ```
         try {
             driver.get("https://demoqa.com/");
@@ -70,7 +70,7 @@ public class MySeleniumTest {
 ```
 
 #### *navigateToElementsPage(WebDriver driver, WebDriverWait wait)* 
-Этот метод предназначен для навигации по веб-странице. Он находит элемент с текстом "Elements" с использованием XPath, выполняет на нем клик, а затем ожидает, пока элемент с идентификатором "item-0" станет кликабельным, и снова выполняет на нем клик. Это позволяет перейти к разделу "Elements" и выбрать подраздел "Text Box":
+Метод предназначен для навигации по веб-странице. Он находит элемент с текстом "Elements" с использованием XPath, выполняет на нем клик, а затем ожидает, пока элемент с идентификатором "item-0" станет кликабельным, и снова выполняет на нем клик. Это позволяет перейти к разделу "Elements" и выбрать подраздел "Text Box":
 
 ```
     private static void navigateToElementsPage(WebDriver driver, WebDriverWait wait) {
@@ -125,3 +125,21 @@ public class MySeleniumTest {
     }
 }
 ```
+### Результат выполнения автотеста:
+После успешного выполнения теста, в консоли появится такой ответ:
+```
+Starting ChromeDriver 118.0.5993.70 (e52f33f30b91b4ddfad649acddc39ab570473b86-refs/branch-heads/5993@{#1216}) on port 9957
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Oct 20, 2023 1:12:34 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+Данные отображены корректно.
+
+Process finished with exit code 0
+```
+*Ответ означает, что тест прошел без ошибок и все шаги, описанные в коде, были выполнены успешно*
+
+- В сообщениях протокола также указывается версия ChromeDriver и то, что он был успешно запущен
+- Обнаружение протокола W3C также указывает на правильную настройку драйвера
+- Строка "Данные отображены корректно" в конце теста говорит о том, что тест завершился успешно и данные на веб-странице отображаются в соответствии с ожиданиями
