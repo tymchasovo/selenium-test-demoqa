@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.junit.jupiter.api.Assertions;
 
 public class MySeleniumTest {
     public static void main(String[] args) {
@@ -53,15 +54,17 @@ public class MySeleniumTest {
     }
 
     private static void verifyData(WebDriver driver) {
-        WebElement nameElement = driver.findElement(By.id("name"));
-        WebElement emailElement = driver.findElement(By.id("email"));
-        WebElement currentAddressElement = driver.findElement(By.id("currentAddress"));
-        WebElement permanentAddressElement = driver.findElement(By.id("permanentAddress"));
+        WebElement container = driver.findElement(By.className("border"));
 
-        String expectedName = "Name: Michael Davis";
-        String expectedEmail = "Email: michael.davis@gmail.com";
-        String expectedCurrentAddress = "Current Address : 456 Elm Avenue, Los Angeles, USA";
-        String expectedPermanentAddress = "Permanent Address : 987 Pine Road, Chicago, USA";
+        WebElement nameElement = By.xpath("//p[contains(text(),\"Name:\")]").findElement(container);
+        WebElement emailElement = By.xpath("//p[contains(text(),\"Email:\")]").findElement(container);
+        WebElement currentAddressElement = By.xpath("//p[contains(text(),\"Current Address :\")]").findElement(container);
+        WebElement permanentAddressElement = By.xpath("//p[contains(text(),\"Permananet Address :\")]").findElement(container);
+
+        String expectedName = "Michael Davis";
+        String expectedEmail = "michael.davis@gmail.com";
+        String expectedCurrentAddress = "456 Elm Avenue, Los Angeles, USA";
+        String expectedPermanentAddress = "987 Pine Road, Chicago, USA";
 
         assertDataEquals(nameElement, expectedName);
         assertDataEquals(emailElement, expectedEmail);
@@ -69,8 +72,14 @@ public class MySeleniumTest {
         assertDataEquals(permanentAddressElement, expectedPermanentAddress);
     }
 
-    private static void assertDataEquals(WebElement element, String expectedText) {
-        String actualText = element.getText();
-        assert actualText.equals(expectedText) : "Expected: " + expectedText + ", but got: " + actualText;
+
+    private static void assertDataEquals(WebElement element, String expectedValue) {
+        String actualText = extractValue(element);
+        Assertions.assertEquals(expectedValue, actualText, "Значения не совпадают. Ожидаемое: " + expectedValue + ", Фактическое: " + actualText);
+    }
+
+    private static String extractValue(WebElement element) {
+        String elementText = element.getAttribute("innerText").trim();
+        return elementText.substring(elementText.indexOf(":") + 1).trim();
     }
 }
