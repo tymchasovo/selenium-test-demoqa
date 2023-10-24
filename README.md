@@ -15,6 +15,35 @@
 - Установка Maven, инструмента для управления зависимостями и сборки проектов
 - Установка JUnit - фреймворка для тестирования на Java
 - Установка WebDriver для браузера Google Chrome (версия 18)
+- Файл *pom.xml* - определяет зависимости для успешной сборки и выполнения автотестов
+  
+В файле pom.xml указать следующие ключевые зависимости:
+```
+<dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version> <!-- Версия Selenium WebDriver -->
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.2</version> <!-- Версия JUnit -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.2</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+```
+
+#### 1. *Selenium WebDriver (org.seleniumhq.selenium:selenium-java)*
+Эта зависимость позволяет взаимодействовать с браузером для автоматизации действий на веб-страницах. В моем случае, это версия 3.141.59
+#### 2. *JUnit (org.junit.jupiter:junit-jupiter и org.junit.jupiter:junit-jupiter-api)*
+Эти зависимости используются для написания и запуска тестов в проекте. В моем случае, это версия 5.7.2
 
 ### Код:
 В этой части кода происходит импорт различных классов и интерфейсов из библиотеки Selenium:
