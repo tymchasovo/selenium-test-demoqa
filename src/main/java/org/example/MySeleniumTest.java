@@ -33,6 +33,7 @@ public class MySeleniumTest {
         }
     }
 
+
     private static void navigateToElementsPage(WebDriver driver, WebDriverWait wait) {
         WebElement firstCard = driver.findElement(By.xpath("//h5[contains(text(),'Elements')]"));
         firstCard.click();
